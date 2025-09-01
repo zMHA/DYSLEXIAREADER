@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <!-- Header Section -->
+        <div class="text-center mb-5">
+            <h1 class="display-4 mb-3">
+                <i class="fas fa-book-reader text-primary"></i>
+                DyslexiFy
+            </h1>
+            <p class="lead">Transform any webpage or document into a dyslexia-friendly reading experience</p>
+            <p class="text-muted">
+                Get clear summaries, adjustable fonts, and accessibility features designed for everyone
+            </p>
+        </div>
+
+        <!-- Input Options -->
+        <div class="row g-4">
+            <!-- URL Input Card -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-link"></i>
+                            Process Website
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('process_url') }}" method="POST">
+                            <div class="mb-3">
+                                <label for="url" class="form-label">Enter Website URL:</label>
+                                <input type="url" 
+                                       class="form-control form-control-lg" 
+                                       id="url" 
+                                       name="url" 
+                                       placeholder="https://example.com/article"
+                                       required>
+                                <div class="form-text">
+                                    <i class="fas fa-info-circle"></i>
+                                    We'll extract the main content from any webpage
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                <i class="fas fa-external-link-alt"></i>
+                                Process Website
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- File Upload Card -->
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-header bg-success text-white text-center">
+                        <h5 class="mb-0">
+                            <i class="fas fa-upload"></i>
+                            Upload Document
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('process_file') }}" method="POST" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="file" class="form-label">Choose Document:</label>
+                                <input type="file" 
+                                       class="form-control form-control-lg" 
+                                       id="file" 
+                                       name="file"
+                                       accept=".txt,.pdf,.docx,.doc"
+                                       required>
+                                <div class="form-text">
+                                    <i class="fas fa-file-alt"></i>
+                                    Supported: TXT, PDF, DOCX, DOC (max 16MB)
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-lg w-100">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                Upload Document
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h3 class="text-center mb-4">What makes DyslexiFy special?</h3>
+                <div class="row g-3">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <i class="fas fa-font fa-2x text-primary mb-2"></i>
+                            <h6>OpenDyslexic Font</h6>
+                            <small class="text-muted">Specially designed font for easier reading</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <i class="fas fa-text-width fa-2x text-success mb-2"></i>
+                            <h6>Adjustable Spacing</h6>
+                            <small class="text-muted">Customize line height and paragraph spacing</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <i class="fas fa-palette fa-2x text-warning mb-2"></i>
+                            <h6>Color Options</h6>
+                            <small class="text-muted">Choose background colors that work for you</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="text-center p-3">
+                            <i class="fas fa-compress-alt fa-2x text-info mb-2"></i>
+                            <h6>AI Summary</h6>
+                            <small class="text-muted">Get clear, simple summaries of complex text</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Instructions -->
+        <div class="card mt-4 border-info">
+            <div class="card-header bg-info text-white">
+                <h6 class="mb-0">
+                    <i class="fas fa-question-circle"></i>
+                    How to use DyslexiFy
+                </h6>
+            </div>
+            <div class="card-body">
+                <ol class="mb-0">
+                    <li><strong>Choose your input:</strong> Either paste a website URL or upload a document</li>
+                    <li><strong>We process it:</strong> Our system extracts the text and creates a simple summary</li>
+                    <li><strong>Read comfortably:</strong> Use the accessibility controls to adjust fonts, colors, and spacing</li>
+                    <li><strong>Export if needed:</strong> Save your formatted content as a PDF for offline reading</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+// Add loading states to form submissions
+document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function() {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+        submitBtn.disabled = true;
+        
+        // Re-enable button after 10 seconds as a failsafe
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 10000);
+    });
+});
+
+// File input validation
+document.getElementById('file').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const maxSize = 16 * 1024 * 1024; // 16MB
+        if (file.size > maxSize) {
+            alert('File too large! Maximum size is 16MB.');
+            this.value = '';
+        }
+    }
+});
+</script>
+{% endblock %}

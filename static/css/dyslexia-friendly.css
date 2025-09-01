@@ -1,0 +1,228 @@
+/* DyslexiFy - Dyslexia-Friendly Styles */
+
+/* Base styles */
+body {
+    font-family: 'OpenDyslexic', Arial, sans-serif;
+    transition: all 0.3s ease;
+}
+
+/* Navbar styles */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+/* Content area styling */
+#mainContent, #summaryContent {
+    font-family: 'OpenDyslexic', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #2c3e50;
+    padding: 2rem;
+    text-align: left;
+    word-spacing: 0.2em;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+}
+
+/* Paragraph spacing for better readability */
+#mainContent p, #summaryContent p {
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Background color variations */
+.bg-white-theme {
+    background-color: #ffffff;
+    color: #2c3e50;
+}
+
+.bg-cream-theme {
+    background-color: #f5f5dc;
+    color: #2c3e50;
+}
+
+.bg-yellow-theme {
+    background-color: #fffacd;
+    color: #2c3e50;
+}
+
+.bg-gray-theme {
+    background-color: #f8f9fa;
+    color: #2c3e50;
+}
+
+/* Text width variations */
+.text-width-narrow {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.text-width-medium {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.text-width-wide {
+    max-width: none;
+}
+
+/* Font family toggles */
+.font-dyslexic {
+    font-family: 'OpenDyslexic', Arial, sans-serif;
+}
+
+.font-standard {
+    font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+/* Enhanced card styles for better contrast */
+.card {
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+    font-weight: 600;
+}
+
+/* Form controls with better visibility */
+.form-control, .form-select {
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    padding: 0.75rem;
+    font-size: 1rem;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
+}
+
+/* Button enhancements */
+.btn {
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Range slider styling */
+.form-range {
+    height: 8px;
+}
+
+.form-range::-webkit-slider-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #3498db;
+}
+
+.form-range::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    background-color: #3498db;
+    border-radius: 50%;
+    border: none;
+}
+
+/* Radio button styling for color picker */
+.btn-check:checked + .btn {
+    background-color: #3498db;
+    border-color: #3498db;
+    color: white;
+}
+
+/* Accessibility improvements */
+.form-label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+/* Loading states */
+.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    #mainContent, #summaryContent {
+        padding: 1rem;
+        font-size: 14px;
+    }
+    
+    .reader-controls {
+        position: static;
+        margin-bottom: 2rem;
+    }
+    
+    .card-body {
+        padding: 1rem;
+    }
+}
+
+/* Print-friendly styles */
+@media print {
+    .reader-controls,
+    .navbar,
+    footer,
+    .btn {
+        display: none !important;
+    }
+    
+    #mainContent, #summaryContent {
+        font-size: 12pt;
+        line-height: 1.6;
+        color: black;
+        background: white !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .card {
+        border: 3px solid #000;
+    }
+    
+    .form-control, .form-select {
+        border: 3px solid #000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+/* Focus indicators for keyboard navigation */
+.form-control:focus,
+.btn:focus,
+.form-check-input:focus,
+.form-range:focus {
+    outline: 3px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Alert styling */
+.alert {
+    border-radius: 8px;
+    border-width: 2px;
+    font-weight: 500;
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+}
