@@ -2,166 +2,179 @@
 
 {% block title %}DyslexiFy Reader - {{ source }}{% endblock %}
 
-{% block extra_head %}
-<style>
-    .reader-controls {
-        position: sticky;
-        top: 20px;
-        z-index: 100;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="row">
-    <!-- Reader Controls Sidebar -->
-    <div class="col-lg-3 col-md-4 mb-4">
-        <div class="reader-controls">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h6 class="mb-0">
-                        <i class="fas fa-cogs"></i>
-                        Reading Controls
-                    </h6>
+<div class="reader-layout">
+    <!-- Reader Controls Panel -->
+    <div class="controls-panel">
+        <div class="controls-header">
+            <div class="controls-title">
+                <i class="fas fa-sliders-h"></i>
+                <span>Reading Controls</span>
+            </div>
+            <button class="controls-toggle" id="controlsToggle">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+        
+        <div class="controls-content" id="controlsContent">
+            <div class="control-group">
+                <div class="control-item">
+                    <label for="fontSize" class="control-label">
+                        <i class="fas fa-text-height"></i>
+                        <span>Font Size</span>
+                    </label>
+                    <div class="slider-wrapper">
+                        <input type="range" class="modern-slider" id="fontSize" min="12" max="24" value="16">
+                        <div class="slider-labels">
+                            <span>12px</span>
+                            <span id="fontSizeValue" class="current-value">16px</span>
+                            <span>24px</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <!-- Font Size Control -->
-                    <div class="mb-3">
-                        <label for="fontSize" class="form-label">
-                            <i class="fas fa-text-height"></i>
-                            Font Size
-                        </label>
-                        <input type="range" class="form-range" id="fontSize" min="12" max="24" value="16">
-                        <div class="d-flex justify-content-between">
-                            <small>12px</small>
-                            <small id="fontSizeValue">16px</small>
-                            <small>24px</small>
+
+                <div class="control-item">
+                    <label for="lineSpacing" class="control-label">
+                        <i class="fas fa-align-left"></i>
+                        <span>Line Spacing</span>
+                    </label>
+                    <div class="slider-wrapper">
+                        <input type="range" class="modern-slider" id="lineSpacing" min="1.2" max="3.0" step="0.2" value="1.8">
+                        <div class="slider-labels">
+                            <span>1.2</span>
+                            <span id="lineSpacingValue" class="current-value">1.8</span>
+                            <span>3.0</span>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Line Spacing Control -->
-                    <div class="mb-3">
-                        <label for="lineSpacing" class="form-label">
-                            <i class="fas fa-align-left"></i>
-                            Line Spacing
+                <div class="control-item">
+                    <label for="columnWidth" class="control-label">
+                        <i class="fas fa-arrows-alt-h"></i>
+                        <span>Text Width</span>
+                    </label>
+                    <select class="modern-select" id="columnWidth">
+                        <option value="narrow">Narrow (easier to follow)</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="wide">Wide (full width)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="control-item">
+                    <label class="control-label">
+                        <i class="fas fa-palette"></i>
+                        <span>Background Color</span>
+                    </label>
+                    <div class="color-options">
+                        <input type="radio" class="color-radio" name="bgColor" id="bgWhite" value="white" checked>
+                        <label class="color-option" for="bgWhite">
+                            <div class="color-circle white"></div>
+                            <span>White</span>
                         </label>
-                        <input type="range" class="form-range" id="lineSpacing" min="1.2" max="3.0" step="0.2" value="1.8">
-                        <div class="d-flex justify-content-between">
-                            <small>1.2</small>
-                            <small id="lineSpacingValue">1.8</small>
-                            <small>3.0</small>
-                        </div>
-                    </div>
-
-                    <!-- Column Width Control -->
-                    <div class="mb-3">
-                        <label for="columnWidth" class="form-label">
-                            <i class="fas fa-arrows-alt-h"></i>
-                            Text Width
+                        
+                        <input type="radio" class="color-radio" name="bgColor" id="bgCream" value="cream">
+                        <label class="color-option" for="bgCream">
+                            <div class="color-circle cream"></div>
+                            <span>Cream</span>
                         </label>
-                        <select class="form-select" id="columnWidth">
-                            <option value="narrow">Narrow (easier to follow)</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="wide">Wide (full width)</option>
-                        </select>
-                    </div>
-
-                    <!-- Background Color -->
-                    <div class="mb-3">
-                        <label class="form-label">
-                            <i class="fas fa-palette"></i>
-                            Background Color
+                        
+                        <input type="radio" class="color-radio" name="bgColor" id="bgYellow" value="yellow">
+                        <label class="color-option" for="bgYellow">
+                            <div class="color-circle yellow"></div>
+                            <span>Yellow</span>
                         </label>
-                        <div class="btn-group-vertical w-100" role="group">
-                            <input type="radio" class="btn-check" name="bgColor" id="bgWhite" value="white" checked>
-                            <label class="btn btn-outline-secondary" for="bgWhite">
-                                <i class="fas fa-circle text-light border border-dark"></i> White
-                            </label>
-                            
-                            <input type="radio" class="btn-check" name="bgColor" id="bgCream" value="cream">
-                            <label class="btn btn-outline-secondary" for="bgCream">
-                                <i class="fas fa-circle" style="color: #f5f5dc;"></i> Cream
-                            </label>
-                            
-                            <input type="radio" class="btn-check" name="bgColor" id="bgYellow" value="yellow">
-                            <label class="btn btn-outline-secondary" for="bgYellow">
-                                <i class="fas fa-circle text-warning"></i> Light Yellow
-                            </label>
-                            
-                            <input type="radio" class="btn-check" name="bgColor" id="bgGray" value="gray">
-                            <label class="btn btn-outline-secondary" for="bgGray">
-                                <i class="fas fa-circle text-secondary"></i> Light Gray
-                            </label>
-                        </div>
+                        
+                        <input type="radio" class="color-radio" name="bgColor" id="bgGray" value="gray">
+                        <label class="color-option" for="bgGray">
+                            <div class="color-circle gray"></div>
+                            <span>Gray</span>
+                        </label>
                     </div>
+                </div>
 
-                    <!-- Font Toggle -->
-                    <div class="mb-3">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" id="dyslexicFont" checked>
-                            <label class="form-check-label" for="dyslexicFont">
+                <div class="control-item">
+                    <div class="toggle-switch">
+                        <input type="checkbox" class="toggle-input" id="dyslexicFont" checked>
+                        <label class="toggle-label" for="dyslexicFont">
+                            <div class="toggle-track">
+                                <div class="toggle-thumb"></div>
+                            </div>
+                            <span class="toggle-text">
                                 <i class="fas fa-font"></i>
-                                Use OpenDyslexic Font
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Export Button -->
-                    <div class="d-grid">
-                        <a href="{{ url_for('export_pdf', content_id=content_id) }}" 
-                           class="btn btn-success">
-                            <i class="fas fa-file-pdf"></i>
-                            Export as PDF
-                        </a>
+                                OpenDyslexic Font
+                            </span>
+                        </label>
                     </div>
                 </div>
+            </div>
+
+            <div class="control-group">
+                <a href="{{ url_for('export_pdf', content_id=content_id) }}" class="export-btn">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>Export as PDF</span>
+                </a>
             </div>
         </div>
     </div>
 
     <!-- Main Content Area -->
-    <div class="col-lg-9 col-md-8">
-        <!-- Source Information -->
-        <div class="card mb-4 border-info">
-            <div class="card-header bg-info text-white">
-                <h6 class="mb-0">
-                    <i class="fas fa-info-circle"></i>
-                    Source: {{ source }}
-                </h6>
+    <div class="content-area">
+        <!-- Content Header -->
+        <div class="content-header">
+            <div class="source-info">
+                <i class="fas fa-info-circle"></i>
+                <span>Source: {{ source }}</span>
+            </div>
+            <div class="content-actions">
+                <button class="action-btn" onclick="window.print()">
+                    <i class="fas fa-print"></i>
+                </button>
+                <button class="action-btn" onclick="copyToClipboard()">
+                    <i class="fas fa-copy"></i>
+                </button>
             </div>
         </div>
 
         <!-- Summary Section -->
-        <div class="card mb-4 border-success">
-            <div class="card-header bg-success text-white">
-                <h5 class="mb-0">
+        <div class="content-section summary-section">
+            <div class="section-header">
+                <div class="section-title">
                     <i class="fas fa-compress-alt"></i>
-                    Quick Summary
-                </h5>
+                    <span>AI Summary</span>
+                </div>
+                <div class="section-badge">Quick Read</div>
             </div>
-            <div class="card-body" id="summaryContent">
+            <div class="section-content" id="summaryContent">
                 {{ summary|replace('\n', '<br>')|safe }}
             </div>
         </div>
 
         <!-- Main Content -->
-        <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h5 class="mb-0">
+        <div class="content-section main-section">
+            <div class="section-header">
+                <div class="section-title">
                     <i class="fas fa-book-open"></i>
-                    Full Content
-                </h5>
+                    <span>Full Content</span>
+                </div>
+                <div class="reading-progress">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <span class="progress-text" id="progressText">0%</span>
+                </div>
             </div>
-            <div class="card-body" id="mainContent">
+            <div class="section-content" id="mainContent">
                 {{ content|replace('\n', '<br>')|safe }}
             </div>
         </div>
 
-        <!-- Back to Home Button -->
-        <div class="text-center mt-4">
-            <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+        <!-- Navigation Footer -->
+        <div class="content-footer">
+            <a href="{{ url_for('index') }}" class="back-btn">
                 <i class="fas fa-arrow-left"></i>
-                Process Another Document
+                <span>Process Another Document</span>
             </a>
         </div>
     </div>
