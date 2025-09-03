@@ -1,0 +1,47 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.sqlite3
+
+# --- Virtual Environment ---
+venv/
+ENV/
+env/
+.venv/
+
+# --- Secrets & Environment ---
+.env
+
+# --- Logs & Debug ---
+*.log
+*.out
+*.err
+
+# --- IDE / Editor ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- System files ---
+.DS_Store
+Thumbs.db
+
+# --- Replit ---
+.replit
+
+# --- Local Config / Instance ---
+instance/
+.config/
+.local/
+
+# --- Packaging ---
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
