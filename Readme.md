@@ -1,5 +1,6 @@
 # DyslexiFy 🧩  
 *Making digital content easier to read for people with dyslexia.*
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 DyslexiFy is a web application that transforms websites and documents (PDF, Word, TXT) into **clear, dyslexia-friendly formats**. It extracts text, generates simplified summaries using **GROQ AI**, and provides customizable reading options such as fonts, spacing, and background colors.
 
