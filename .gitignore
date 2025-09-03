@@ -31,7 +31,10 @@ env/
 Thumbs.db
 
 # --- Replit ---
+# Replit-specific
 .replit
+replit.nix
+uv.lock
 
 # --- Local Config / Instance ---
 instance/
