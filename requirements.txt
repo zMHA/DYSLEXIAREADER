@@ -1,0 +1,8 @@
+Flask
+Flask-SQLAlchemy
+gunicorn
+trafilatura
+PyPDF2
+python-docx
+WeasyPrint
+python-dotenv
