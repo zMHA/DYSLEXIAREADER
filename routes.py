@@ -1,12 +1,13 @@
+import os
 import logging
-from flask import render_template, request, flash, redirect, url_for, make_response
+from flask import render_template, request, jsonify, flash, redirect, url_for, make_response
+from werkzeug.utils import secure_filename
 from app import app, db
 from models import ProcessedContent
 from groq_service import summarize_text
 from web_scraper import get_website_text_content
 from file_processor import extract_text_from_file
 from pdf_generator import generate_pdf
-from io import BytesIO
 
 logger = logging.getLogger(__name__)
 
@@ -30,28 +31,32 @@ def process_url():
             flash('Please enter a valid URL', 'error')
             return redirect(url_for('index'))
         
+        # Add protocol if missing
         if not url.startswith(('http://', 'https://')):
             url = 'https://' + url
         
         logger.info(f"Processing URL: {url}")
         
+        # Extract text content from the website
         text_content = get_website_text_content(url)
+        
         if not text_content:
             flash('Could not extract text from the provided URL', 'error')
             return redirect(url_for('index'))
         
+        # Generate summary
         try:
             summary = summarize_text(text_content)
         except Exception as e:
             logger.error(f"Summary generation failed: {e}")
             summary = "Summary generation unavailable"
         
-        processed_content = ProcessedContent(
-            source_type='url',
-            source_value=url,
-            original_text=text_content,
-            summary=summary
-        )
+        # Save to database
+        processed_content = ProcessedContent()
+        processed_content.source_type = 'url'
+        processed_content.source_value = url
+        processed_content.original_text = text_content
+        processed_content.summary = summary
         db.session.add(processed_content)
         db.session.commit()
         
@@ -60,6 +65,7 @@ def process_url():
                              summary=summary,
                              source=url,
                              content_id=processed_content.id)
+    
     except Exception as e:
         logger.error(f"Error processing URL: {e}")
         flash('An error occurred while processing the URL', 'error')
@@ -78,40 +84,49 @@ def process_file():
             flash('No file selected', 'error')
             return redirect(url_for('index'))
         
-        if not allowed_file(file.filename):
+        if not file.filename or not allowed_file(file.filename):
             flash('File type not supported. Please upload .txt, .pdf, .docx, or .doc files', 'error')
             return redirect(url_for('index'))
         
-        logger.info(f"Processing uploaded file: {file.filename}")
+        # Save the uploaded file
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(file_path)
         
-        # Process file in memory (BytesIO instead of saving to disk)
-        file_stream = BytesIO(file.read())
-        text_content = extract_text_from_file(file_stream, file.filename)
+        logger.info(f"Processing file: {filename}")
+        
+        # Extract text content from the file
+        text_content = extract_text_from_file(file_path)
+        
+        # Clean up uploaded file
+        os.remove(file_path)
         
         if not text_content:
             flash('Could not extract text from the uploaded file', 'error')
             return redirect(url_for('index'))
         
+        # Generate summary
         try:
             summary = summarize_text(text_content)
         except Exception as e:
             logger.error(f"Summary generation failed: {e}")
             summary = "Summary generation unavailable"
         
-        processed_content = ProcessedContent(
-            source_type='file',
-            source_value=file.filename,
-            original_text=text_content,
-            summary=summary
-        )
+        # Save to database
+        processed_content = ProcessedContent()
+        processed_content.source_type = 'file'
+        processed_content.source_value = filename
+        processed_content.original_text = text_content
+        processed_content.summary = summary
         db.session.add(processed_content)
         db.session.commit()
         
         return render_template('reader.html', 
                              content=text_content, 
                              summary=summary,
-                             source=file.filename,
+                             source=filename,
                              content_id=processed_content.id)
+    
     except Exception as e:
         logger.error(f"Error processing file: {e}")
         flash('An error occurred while processing the file', 'error')
@@ -122,11 +137,17 @@ def export_pdf(content_id):
     """Export processed content as PDF"""
     try:
         content = ProcessedContent.query.get_or_404(content_id)
+        
+        # Generate PDF
         pdf_data = generate_pdf(content.original_text, content.summary, content.source_value)
+        
+        # Create response
         response = make_response(pdf_data)
         response.headers['Content-Type'] = 'application/pdf'
         response.headers['Content-Disposition'] = f'attachment; filename=dyslexify_export_{content_id}.pdf'
+        
         return response
+    
     except Exception as e:
         logger.error(f"Error generating PDF: {e}")
         flash('An error occurred while generating the PDF', 'error')
