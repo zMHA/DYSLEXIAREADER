@@ -80,7 +80,8 @@ Skip setup and try the hosted version instantly:
 - ✅ Real-world impact: helping dyslexic readers consume digital content
 - ✅ Submission for Syrotech MVP Hackathon
 
-👥 Team
+#👥 Team
+
 👨‍💻 Developed by zMHA
 
-✨ DyslexiFy isn’t just an MVP — it’s a step toward making digital knowledge inclusive for everyone.
+##✨ DyslexiFy isn’t just an MVP — it’s a step toward making digital knowledge inclusive for everyone.
