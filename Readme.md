@@ -48,33 +48,32 @@ echo GROQ_API_KEY=your_groq_api_key_here > .env
 # 5. Start the app
 python main.py
 
-👉 Open in browser: http://127.0.0.1:5000
+```
 
-🔹 Try Online (Render Deployment)
+### 👉 Open in browser: http://127.0.0.1:5000
+
+
+#🔹 Try Online (Render Deployment)*
 
 Skip setup and try the hosted version instantly:
 👉 https://dyslexiareader.onrender.com/
 
-🏗️ System Architecture
+# 🏗️ System Architecture
 
 Frontend: Jinja2 + Bootstrap 5, OpenDyslexic font, JS customization controls
 Backend: Flask + SQLAlchemy, PDF/DOCX/TXT processing, Trafilatura (web scraping)
 AI Layer: GROQ API for simplified summaries
 Export: WeasyPrint for generating accessible PDFs
 
-📦 Tech Stack
+# 📦 Tech Stack
 
 Frameworks: Flask, SQLAlchemy, Bootstrap 5, Jinja2
-
 AI/Utilities: GROQ API, Trafilatura, PyPDF2, python-docx, WeasyPrint
-
 Database: SQLite
-
 Deployment: Render
-
 Fonts & Design: OpenDyslexic, accessibility-first CSS
 
-📌 Hackathon Relevance
+# 📌 Hackathon Relevance
 
 ✅ Accessibility-first MVP
 ✅ Deployed & working (local + cloud)
