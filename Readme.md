@@ -1,53 +1,71 @@
-# DyslexiFy 🧩  
-*Making digital content easier to read for people with dyslexia.*
+DyslexiFy 🧩
+
+Making digital content easier to read for people with dyslexia.
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-DyslexiFy is a web application that transforms websites and documents (PDF, Word, TXT) into **clear, dyslexia-friendly formats**. It extracts text, generates simplified summaries using **GROQ AI**, and provides customizable reading options such as fonts, spacing, and background colors.
+DyslexiFy is a web application that transforms websites and documents (PDF, Word, TXT) into clear, dyslexia-friendly formats. It extracts text, generates simplified summaries using GROQ AI, and provides customizable reading options such as fonts, spacing, and background colors.
 
----
+🌍 Live Demo: [DyslexiFy on Render](https://dyslexiareader.onrender.com/)
 
-## ✨ Features
-- 📄 Upload files (TXT, PDF, DOCX, DOC) or paste URLs  
-- 🔍 Extracts and cleans main content automatically  
-- 🧠 AI-powered summaries with GROQ  
-- 🔤 Adjustable font size, line spacing, and column width  
-- 🎨 Background color and OpenDyslexic font support  
-- 📑 Export simplified content as dyslexia-friendly PDF  
+🎥 Demo Video: Coming Soon
 
----
+✨ Features
 
-## 🚀 Quick Start
+📄 Upload files (TXT, PDF, DOCX, DOC) or paste URLs
 
-### 1. Clone the repository
-```bash
+🔍 Extracts and cleans main content automatically
+
+🧠 AI-powered summaries with GROQ
+
+🔤 Adjustable font size, line spacing, and column width
+
+🎨 Background color and OpenDyslexic font support
+
+📑 Export simplified content as dyslexia-friendly PDF
+
+🚀 Quick Start
+🔹 Option 1: Run Locally
+
+Clone the repository
+
 git clone https://github.com/zMHA/DYSLEXIAREADER.git
 cd DYSLEXIAREADER
-2. Set up environment
-bash
-Copy code
+
+
+Set up virtual environment
+
 python -m venv venv
 source venv/bin/activate   # On Windows: venv\Scripts\activate
-3. Install dependencies
-bash
-Copy code
-pip install .
-(dependencies are managed via pyproject.toml)
 
-4. Configure API Key
+
+Install dependencies
+
+pip install .
+# dependencies are managed via pyproject.toml
+
+
+Configure API Key
 Create a .env file in the project root:
 
-env
-Copy code
 GROQ_API_KEY=your_groq_api_key_here
-5. Run the app
-bash
-Copy code
+
+
+Run the app
+
 python main.py
+
+
 Now open in your browser:
 👉 http://127.0.0.1:5000
 
+🔹 Option 2: Use Render Deployment
+
+Skip setup and try the live app instantly:
+👉 https://dyslexiareader.onrender.com/
+
 🏗 System Architecture
 Frontend
+
 Jinja2 + Bootstrap 5 for responsive UI
 
 Accessibility-first CSS: OpenDyslexic font, adjustable spacing, background colors
@@ -55,7 +73,8 @@ Accessibility-first CSS: OpenDyslexic font, adjustable spacing, background color
 JavaScript reader controls for customization
 
 Backend
-Flask + SQLAlchemy for API + database
+
+Flask + SQLAlchemy (API + database)
 
 File processing pipeline for PDFs, DOCX, TXT
 
@@ -66,6 +85,7 @@ GROQ AI for simplified summaries
 WeasyPrint for PDF export
 
 📦 Dependencies
+
 Flask (web framework)
 
 SQLAlchemy + SQLite (database)
@@ -82,16 +102,9 @@ Bootstrap 5 + OpenDyslexic font (frontend)
 
 GROQ API (AI summarization)
 
-python-dotenv (for managing secrets)
-
+python-dotenv (manage secrets)
 (All managed via pyproject.toml)
 
-📌 Hackathon Notes
-✅ Accessibility-first design
-
-✅ Works locally + deployable to Replit, Render, Heroku
-
-✅ Real-world impact: helps dyslexic readers access digital content
-
 👥 Team
+
 Developed by zMHA for Syrotech Hackathon.
