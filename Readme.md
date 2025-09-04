@@ -53,32 +53,32 @@ python main.py
 ### 👉 Open in browser: http://127.0.0.1:5000
 
 
-#🔹 Try Online (Render Deployment)*
+###🔹 Try Online (Render Deployment)
 
 Skip setup and try the hosted version instantly:
 👉 https://dyslexiareader.onrender.com/
 
 # 🏗️ System Architecture
 
-Frontend: Jinja2 + Bootstrap 5, OpenDyslexic font, JS customization controls
-Backend: Flask + SQLAlchemy, PDF/DOCX/TXT processing, Trafilatura (web scraping)
-AI Layer: GROQ API for simplified summaries
-Export: WeasyPrint for generating accessible PDFs
+- Frontend: Jinja2 + Bootstrap 5, OpenDyslexic font, JS customization controls
+- Backend: Flask + SQLAlchemy, PDF/DOCX/TXT processing, Trafilatura (web scraping)
+- AI Layer: GROQ API for simplified summaries
+- Export: WeasyPrint for generating accessible PDFs
 
 # 📦 Tech Stack
 
-Frameworks: Flask, SQLAlchemy, Bootstrap 5, Jinja2
-AI/Utilities: GROQ API, Trafilatura, PyPDF2, python-docx, WeasyPrint
-Database: SQLite
-Deployment: Render
-Fonts & Design: OpenDyslexic, accessibility-first CSS
+- Frameworks: Flask, SQLAlchemy, Bootstrap 5, Jinja2
+- AI/Utilities: GROQ API, Trafilatura, PyPDF2, python-docx, WeasyPrint
+- Database: SQLite
+- Deployment: Render
+- Fonts & Design: OpenDyslexic, accessibility-first CSS
 
 # 📌 Hackathon Relevance
 
-✅ Accessibility-first MVP
-✅ Deployed & working (local + cloud)
-✅ Real-world impact: helping dyslexic readers consume digital content
-✅ Submission for Syrotech MVP Hackathon
+- ✅ Accessibility-first MVP
+- ✅ Deployed & working (local + cloud)
+- ✅ Real-world impact: helping dyslexic readers consume digital content
+- ✅ Submission for Syrotech MVP Hackathon
 
 👥 Team
 👨‍💻 Developed by zMHA
