@@ -70,6 +70,8 @@ python main.py
 Skip setup and try the hosted version instantly:
 👉 https://dyslexiareader.onrender.com/
 
+---
+
 # 🏗️ System Architecture
 
 - Frontend: Jinja2 + Bootstrap 5, OpenDyslexic font, JS customization controls
