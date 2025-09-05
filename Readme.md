@@ -5,8 +5,8 @@
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-blue.svg)](#)  
 [![Deployed on Render](https://img.shields.io/badge/Deployed%20on-Render-green.svg)](#)  
 
-🌍 **Live Demo:** [Deployed on Render](https://dyslexiareader.onrender.com/)  
-🎥 **Demo Video:** [Coming Soon](#)  
+🌍 **Live Demo:** [Test on Render](https://dyslexiareader.onrender.com/)  
+🎥 **Demo Video:** [Availabla on Youtube](https://www.youtube.com/watch?v=xlBXimVAtUo&t=183s)  
 
 ---
 
