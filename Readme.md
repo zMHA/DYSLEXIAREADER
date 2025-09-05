@@ -27,6 +27,18 @@
 
 ---
 
+⚠️ Important Note
+
+When using the URL input feature, some websites may not allow automated text extraction due to restrictions (e.g., paywalls, scripts, or blocked content). In such cases:
+
+Text might not be extracted properly.
+
+Summaries may not be generated.
+
+👉 For best results, use open-access websites or upload documents directly.
+
+---
+
 ## 🛠️ Getting Started  
 
 ### 🔹 Run Locally  
