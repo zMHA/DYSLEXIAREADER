@@ -11,9 +11,9 @@
 ---
 
 ## ✨ About the Project  
-**DyslexiFy** is a web application that transforms websites and documents (PDF, Word, TXT) into **dyslexia-friendly formats**. It automatically extracts text, simplifies content with **AI-powered summaries**, and provides customizable reading experiences through fonts, spacing, and background colors.  
+**DyslexiFy** is a web application that transforms websites and documents (PDF, Word, TXT) into **dyslexia-friendly formats**. It automatically extracts text, simplifies content with **AI-powered summaries**, and lets users customize their reading experience with fonts, spacing, and colors.  
 
-💡 *Built with accessibility-first design for real-world impact.*  
+💡 *Designed with accessibility-first principles to support dyslexic readers worldwide.*  
 
 ---
 
@@ -78,7 +78,6 @@ Skip setup and try the hosted version instantly:
 - ✅ Accessibility-first MVP
 - ✅ Deployed & working (local + cloud)
 - ✅ Real-world impact: helping dyslexic readers consume digital content
-- ✅ Submission for Syrotech MVP Hackathon
 
 
 👥 Team
